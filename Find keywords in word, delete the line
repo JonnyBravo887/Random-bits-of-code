@@ -1,15 +1,20 @@
-Dim source As Document, target As Document #sets the target document
-Set source = ActiveDocument                #sets the source
-Set target = Documents.Add                 #creates a new document
-source.Activate                            #activates the source
-Selection.HomeKey wdStory       
+Sub Macro5()
+'
+' Macro5 Macro
+'
+'
+ Dim source As Document
+Set source = ActiveDocument
+source.Activate
+Selection.HomeKey wdStory
 Selection.Find.ClearFormatting
 With Selection.Find
-Do While .Execute(FindText:="source=", Forward:=True, _   #heres your keyword search
-MatchWildcards:=False, Wrap:=wdFindStop, MatchCase:=False) = True
-target.Range.InsertAfter Selection.Bookmarks("\line").Range.Text & vbCr
-Selection.Collapse wdCollapseEnd           #collapsing of the selection
-Selection.MoveRight wdCharacter, 1         #moving onto the next keyword
+Do While .Execute(FindText:="TST", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchCase:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
 Loop
 End With
-target.Activate
+
+End Sub
