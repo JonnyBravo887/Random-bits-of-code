@@ -1,0 +1,19 @@
+Sub Macro5()
+'
+' Macro5 Macro
+'
+'
+ Dim source As Document
+Set source = ActiveDocument
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+With Selection.Find
+Do While .Execute(FindText:="REA", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchCase:=False) = True
+Selection.Delete
+
+Loop
+End With
+
+End Sub
