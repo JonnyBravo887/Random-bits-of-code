@@ -1,15 +1,15 @@
-Dim source As Document, target As Document
-Set source = ActiveDocument
-Set target = Documents.Add
-source.Activate
-Selection.HomeKey wdStory
+Dim source As Document, target As Document #sets the target document
+Set source = ActiveDocument                #sets the source
+Set target = Documents.Add                 #creates a new document
+source.Activate                            #activates the source
+Selection.HomeKey wdStory       
 Selection.Find.ClearFormatting
 With Selection.Find
-Do While .Execute(FindText:="source=", Forward:=True, _
+Do While .Execute(FindText:="source=", Forward:=True, _   #heres your keyword search
 MatchWildcards:=False, Wrap:=wdFindStop, MatchCase:=False) = True
 target.Range.InsertAfter Selection.Bookmarks("\line").Range.Text & vbCr
-Selection.Collapse wdCollapseEnd
-Selection.MoveRight wdCharacter, 1
+Selection.Collapse wdCollapseEnd           #collapsing of the selection
+Selection.MoveRight wdCharacter, 1         #moving onto the next keyword
 Loop
 End With
 target.Activate
