@@ -1,0 +1,101 @@
+ Dim source As Document
+Set source = ActiveDocument
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+Selection.Find.Replacement.ClearFormatting
+Selection.Find.Replacement.Highlight = True
+
+With Selection.Find
+Do While .Execute(FindText:="ADS_1", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+End With
+
+End Sub
+Sub Macro7()
+'
+' Macro7 Macro
+'
+'
+ Dim source As Document
+Set source = ActiveDocument
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+
+With Selection.Find
+Do While .Execute(FindText:="ADS_1", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ADS_2", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdYellow
+Selection.Range.HighlightColorIndex = wdYellow
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ADS_3", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdPink
+Selection.Range.HighlightColorIndex = wdPink
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ADS_4", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdTurquoise
+Selection.Range.HighlightColorIndex = wdTurquoise
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="NO", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="NCD", Forward:=True, _
+MatchWildcards:=Flase, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdRed
+Selection.Range.HighlightColorIndex = wdRed
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+End With
+
+End Sub
