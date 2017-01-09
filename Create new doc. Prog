@@ -7,8 +7,7 @@ Selection.Find.ClearFormatting
 With Selection.Find
 Do While .Execute(FindText:="source=", Forward:=True, _
 MatchWildcards:=False, Wrap:=wdFindStop, MatchCase:=False) = True
-target.Range.InsertAfter Selection.Bookmarks("\line").Range.Text & 
-vbCr
+target.Range.InsertAfter Selection.Bookmarks("\line").Range.Text & vbCr
 Selection.Collapse wdCollapseEnd
 Selection.MoveRight wdCharacter, 1
 Loop
