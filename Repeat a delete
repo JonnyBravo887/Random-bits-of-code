@@ -1,0 +1,10 @@
+Dim para As Paragraph
+Selection.HomeKey wdStory
+For Each para In ActiveDocument.Paragraphs
+
+    Selection.MoveRight Unit:=wdCharacter, Count:=1
+    Selection.Delete Unit:=wdCharacter, Count:=1
+
+Next para
+    
+End Sub
