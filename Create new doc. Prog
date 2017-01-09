@@ -1,0 +1,16 @@
+Dim source As Document, target As Document
+Set source = ActiveDocument
+Set target = Documents.Add
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+With Selection.Find
+Do While .Execute(FindText:="source=", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchCase:=False) = True
+target.Range.InsertAfter Selection.Bookmarks("\line").Range.Text & 
+vbCr
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+Loop
+End With
+target.Activate
