@@ -1,0 +1,686 @@
+Function SearchText(SearchString As String, target As Document)
+    Dim j As Integer
+    j = 1
+
+    ' Selection.HomeKey wdStory
+    With Selection.Find
+        Do While .Execute(FindText:=SearchString & CStr(j), Forward:=True, _
+            MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+            Selection.MoveRight wdCharacter, 4
+            target.Range.InsertAfter Selection.Bookmarks("\Char").Range.Text & vbCr
+            Selection.Collapse wdCollapseEnd
+            Selection.MoveRight wdCharacter, 1
+            
+            j = j + 1
+        Loop
+    End With
+
+
+End Function
+
+
+Sub Macro1()
+'
+' Macro1 Macro
+' Activated using Alt+F9
+' CRC info and Signal extractor
+'
+ Dim source As Document, target As Document
+Set source = ActiveDocument
+Set target = Documents.Add
+Set target2 = Documents.Add
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+
+
+Dim testCounter As Integer
+Dim runtime As Integer
+
+Selection.HomeKey wdStory
+testCounter = 0
+runtime = 0
+
+With Selection.Find
+Do While .Execute(FindText:="Test ", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=False) = True
+testCounter = testCounter + 1
+Loop
+
+End With
+
+Selection.HomeKey wdStory
+Do While runtime < testCounter
+
+SearchText "ESC_LEFT_1, CM_L_ESC_LSI_1A_", target
+SearchText "ESC_LEFT_1, CM_L_ESC_LSI_2A_", target
+SearchText "ESC_LEFT_1, CM_R_ESC_LSI_1A_", target
+SearchText "ESC_LEFT_1, CM_R_ESC_LSI_2A_", target
+
+runtime = runtime + 1
+
+Loop
+
+With Selection.Find
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="CM_CRC_A", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.MoveRight wdCharacter, 3
+target2.Range.InsertAfter Selection.Bookmarks("\line").Range.Text & vbCr
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Do While .Execute(FindText:="ADS_1", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ADS_2", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdYellow
+Selection.Range.HighlightColorIndex = wdYellow
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ADS_3", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdPink
+Selection.Range.HighlightColorIndex = wdPink
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ADS_4", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdTurquoise
+Selection.Range.HighlightColorIndex = wdTurquoise
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="NO", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="NCD", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdRed
+Selection.Range.HighlightColorIndex = wdRed
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="SSM", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdTurquoise
+Selection.Range.HighlightColorIndex = wdTurquoise
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="RGW13", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="RGW12", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdYellow
+Selection.Range.HighlightColorIndex = wdYellow
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="RGW15", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdPink
+Selection.Range.HighlightColorIndex = wdPink
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="RGW14", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdTurquoise
+Selection.Range.HighlightColorIndex = wdTurquoise
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="OFF", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdRed
+Selection.Range.HighlightColorIndex = wdRed
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ON", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Options.DefaultHighlightColorIndex = wdBrightGreen
+Selection.Range.HighlightColorIndex = wdBrightGreen
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="WAIT", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdTurquoise
+Selection.Range.HighlightColorIndex = wdTurquoise
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="WAI ", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Options.DefaultHighlightColorIndex = wdTurquoise
+Selection.Range.HighlightColorIndex = wdTurquoise
+Selection.Collapse wdCollapseEnd
+Selection.MoveRight wdCharacter, 1
+
+Loop
+
+' targets the first created document and makes it
+' active for the marco to work on. Remember targets
+' are defined at the very start of the marco. This one,
+' works on formatting the LSI numbers sent on 664; formatting
+' them into easy to read blocks of 4, for each test step.
+
+target.Activate
+Dim para As Paragraph
+Selection.HomeKey wdStory
+For Each para In ActiveDocument.Paragraphs
+
+    Selection.MoveRight Unit:=wdCharacter, Count:=1
+    Selection.Delete Unit:=wdCharacter, Count:=1
+
+Next para
+'
+' Uses the search term GAC to find the start of each message,
+' going to the beginging of the line, counting 8 then inserting
+' a return, so each LSI serial appears on separate lines.
+
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+With Selection.Find
+Do While .Execute(FindText:="GAC", Forward:=True, _
+MatchWildcards:=True, Wrap:=wdFindStop, MatchCase:=True) = True
+    Selection.HomeKey wdLine
+    Selection.MoveRight Unit:=wdCharacter, Count:=8
+    Selection.TypeParagraph
+
+Loop
+End With
+
+' Formats the Extracted signal into blocks of 4 lines
+' These lines are represented, for example, by:
+'   ESC_LEFT_1 , CM_L_ESC_LSI_1A
+'   ESC_LEFT_2 , CM_L_ESC_LSI_1A
+'   ESC_RIGHT_1 , CM_L_ESC_LSI_1A
+'   ESC_RIGHT_2 , CM_L_ESC_LSI_1A
+' The code loops 25 times as a maximum to capture all the
+' variations of ESC_XXXX_X, CM_X_ESC_LSI_XA
+
+Dim i As Integer, counter As Integer
+i = 25
+counter = 0
+Selection.HomeKey wdStory
+Do While i > counter
+    Selection.HomeKey wdLine
+    Selection.MoveDown Unit:=wdLine, Count:=4
+    Selection.TypeParagraph
+    i = i - 1
+
+Loop
+'
+' The next section simply formats the text removing any
+' uncessary spaces caused by  indents or multiple line spacing.
+
+ Selection.WholeStory
+    With Selection.ParagraphFormat
+        .LeftIndent = CentimetersToPoints(0)
+        .RightIndent = CentimetersToPoints(0)
+        .SpaceBefore = 0
+        .SpaceBeforeAuto = False
+        .SpaceAfter = 0
+        .SpaceAfterAuto = False
+        .LineSpacingRule = wdLineSpaceSingle
+        .Alignment = wdAlignParagraphLeft
+        .WidowControl = True
+        .KeepWithNext = False
+        .KeepTogether = False
+        .PageBreakBefore = False
+        .NoLineNumber = False
+        .Hyphenation = True
+        .FirstLineIndent = CentimetersToPoints(0)
+        .OutlineLevel = wdOutlineLevelBodyText
+        .CharacterUnitLeftIndent = 0
+        .CharacterUnitRightIndent = 0
+        .CharacterUnitFirstLineIndent = 0
+        .LineUnitBefore = 0
+        .LineUnitAfter = 0
+        .MirrorIndents = False
+        .TextboxTightWrap = wdTightNone
+    End With
+'
+' targets the second created document and makes it
+' active for the marco to work on. Remember targets
+' are defined at the very start of the marco
+
+target2.Activate
+ Selection.WholeStory
+    With Selection.ParagraphFormat
+        .LeftIndent = CentimetersToPoints(0)
+        .RightIndent = CentimetersToPoints(0)
+        .SpaceBefore = 0
+        .SpaceBeforeAuto = False
+        .SpaceAfter = 0
+        .SpaceAfterAuto = False
+        .LineSpacingRule = wdLineSpaceSingle
+        .Alignment = wdAlignParagraphLeft
+        .WidowControl = True
+        .KeepWithNext = False
+        .KeepTogether = False
+        .PageBreakBefore = False
+        .NoLineNumber = False
+        .Hyphenation = True
+        .FirstLineIndent = CentimetersToPoints(0)
+        .OutlineLevel = wdOutlineLevelBodyText
+        .CharacterUnitLeftIndent = 0
+        .CharacterUnitRightIndent = 0
+        .CharacterUnitFirstLineIndent = 0
+        .LineUnitBefore = 0
+        .LineUnitAfter = 0
+        .MirrorIndents = False
+        .TextboxTightWrap = wdTightNone
+'
+' Goes to the start of the document using wdStory and
+' removes carriage returns.
+
+    Selection.HomeKey wdStory
+    For Each para In ActiveDocument.Paragraphs
+
+        Selection.MoveDown Unit:=wdLine, Count:=1
+        Selection.Delete Unit:=wdCharacter, Count:=1
+
+    Next para
+
+' The search function is used to locate the last CRC ESC_RIGHT_2
+' sent in the block of 4 664 messages and insert a space between
+' the last four lines and the next four lines. Making reading the
+' CRC for each test easier.
+
+    Selection.HomeKey wdStory
+    With Selection.Find
+    Do While .Execute(FindText:="ESC_RIGHT_2, CM_CRC_A", Forward:=True, _
+    MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+    Selection.EndKey wdLine
+    Selection.TypeParagraph
+
+    Loop
+    End With
+
+    End With
+
+End With
+
+End Sub
+Sub Macro2()
+'
+' Macro2 Macro
+' Separate the GAC CM and format with out double spacing
+'
+Dim source As Document
+Set source = ActiveDocument
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+With Selection.Find
+Do While .Execute(FindText:="GAC", Forward:=True, _
+MatchWildcards:=True, Wrap:=wdFindStop, MatchCase:=True) = True
+    Selection.HomeKey wdLine
+    Selection.MoveRight Unit:=wdCharacter, Count:=8
+    Selection.TypeParagraph
+    
+Loop
+End With
+
+ Selection.WholeStory
+    With Selection.ParagraphFormat
+        .LeftIndent = CentimetersToPoints(0)
+        .RightIndent = CentimetersToPoints(0)
+        .SpaceBefore = 0
+        .SpaceBeforeAuto = False
+        .SpaceAfter = 0
+        .SpaceAfterAuto = False
+        .LineSpacingRule = wdLineSpaceSingle
+        .Alignment = wdAlignParagraphLeft
+        .WidowControl = True
+        .KeepWithNext = False
+        .KeepTogether = False
+        .PageBreakBefore = False
+        .NoLineNumber = False
+        .Hyphenation = True
+        .FirstLineIndent = CentimetersToPoints(0)
+        .OutlineLevel = wdOutlineLevelBodyText
+        .CharacterUnitLeftIndent = 0
+        .CharacterUnitRightIndent = 0
+        .CharacterUnitFirstLineIndent = 0
+        .LineUnitBefore = 0
+        .LineUnitAfter = 0
+        .MirrorIndents = False
+        .TextboxTightWrap = wdTightNone
+    End With
+    
+Selection.HomeKey wdStory
+
+    End Sub
+Sub Macro3()
+'
+' Macro3 Macro
+'
+' ScriptCheck Macro
+' This Macro removes call lines with the correct commands as outlined in the
+' STRS TOR. This inlcudes things like COM, DIS, STS, DUP, LOA and so fourth
+'
+ Dim source As Document
+Set source = ActiveDocument
+source.Activate
+Selection.HomeKey wdStory
+Selection.Find.ClearFormatting
+With Selection.Find
+Do While .Execute(FindText:="COM", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="DIS", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="DUP", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="ETX", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="EXE", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="FMR", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="LOA", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="MOD", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="PF", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="REA", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="RES", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="RUN", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="SEN", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="STA", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="STO", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="STX", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="SUS", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="SWI", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="TST", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="UPD", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="WAI", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="XLO", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="* ESC_STS", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="$ESC_STS", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="; ", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="@", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="! ", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+Selection.HomeKey wdStory
+Do While .Execute(FindText:="* ", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Bookmarks("\line").Select
+Selection.Delete
+
+Loop
+
+End With
+
+End Sub
+
+Sub Macro4()
+'
+' Macro4 Macro
+'
+'
+
+Dim source As Document, target As Document
+Set source = ActiveDocument
+Selection.HomeKey wdStory
+
+With Selection.Find
+Do While .Execute(FindText:="ID :", Forward:=True, _
+MatchWildcards:=False, Wrap:=wdFindStop, MatchWholeWord:=True) = True
+Selection.Rows.Delete
+
+Loop
+
+End With
+
+End Sub
